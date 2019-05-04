@@ -2,6 +2,10 @@ import java.awt.Graphics;
 import java.util.Random;
 
 public class GameObject {
+	Boolean leftPressed=false;
+	Boolean rightPressed=false;
+	Boolean spacePressed=false;
+	Boolean isAlive=true;
 	int x;
     int y;
     int width;
