@@ -10,13 +10,14 @@ int speed;
 	}
 
 void update() {
+	
 	if(rightPressed==true) {
 		x+=speed;
 	}
 if(leftPressed==true) {
 	x-=speed;
 	}
-
+super.update();
 }
 
 void draw(Graphics eg) {

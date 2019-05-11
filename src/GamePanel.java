@@ -27,7 +27,7 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("keytyped");
+		
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener{
 				currentState++;
 			
 			if(currentState>END_STATE) {
-				currentState=MENU_STATE;
+				System.exit(0);
 			}
 		}
 		if(e.getKeyCode()==32) {
@@ -70,8 +70,15 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener{
 	}
 	
 void updateGameState() {
+	if(ship.isAlive==false) {
+		currentState=END_STATE;
+	}
+	
+	manager.manageEnemies();
+	manager.checkCollision();
+	manager.purgeObjects();
 	if(ship.spacePressed==true) {
-		manager.addProjectile(new Projectile(ship.x+25, ship.y, 10, 10));
+		manager.addProjectile(new Projectile(ship.x, ship.y, 50, 50));
 	}
 		manager.update();
 	}
@@ -91,18 +98,23 @@ void drawMenuState(Graphics g) {
 }
 
 void drawGameState(Graphics g) {
+	
 	g.setColor(Color.BLACK);
 	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
+	g.setColor(Color.WHITE);
+	g.drawString(manager.getScore()+"",0,10);
 	manager.draw(g);
 }
 
 void drawEndState(Graphics g) {
+	
 	g.setColor(Color.RED);
 	g.fillRect(0, 0, LeagueInvaders.width, LeagueInvaders.height);
 	g.setFont(titleFont);
 	g.setColor(Color.WHITE);
 	g.drawString("GAME OVER", 0, 100);
 	g.drawString("lul u died", 0, 130);
+	g.drawString("score:"+manager.getScore(),0,10);
 }
 
 	@Override
