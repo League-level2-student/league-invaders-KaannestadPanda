@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class ObjectManager {
 long enemyTimer=0;
-int enemySpawnTime=1;
+int enemySpawnTime=2000;
 	int score=0;
 	
 	int getScore() {
@@ -55,7 +55,7 @@ int enemySpawnTime=1;
 	
 	void manageEnemies() {
 	    if(System.currentTimeMillis() - enemyTimer >= enemySpawnTime){
-            addAlien(new Alien(new Random().nextInt(LeagueInvaders.width-50), 0, 50, 50));
+            addAlien(new Alien(new Random().nextInt(LeagueInvaders.width-50), -60, 50, 50));
 
 enemyTimer = System.currentTimeMillis();
 
@@ -68,6 +68,7 @@ enemyTimer = System.currentTimeMillis();
 		for(int i=enemy.size()-1;i>0;i--) {
 			if(enemy.get(i).isAlive==false) {
 				enemy.remove(i);
+				
 			}
 			
 		}
@@ -87,13 +88,13 @@ enemyTimer = System.currentTimeMillis();
 
 	                rock.isAlive = false;
 
-	        }
+	         }
 
 	}
 		
 		for(int i=project.size()-1;i>0; i--) {
 			for(int g=enemy.size()-1;g>0;g--) {
-				if(project.get(i).collisionBox.intersects(enemy.get(g).collisionBox)) {
+				if(project.get(i).collisionBox.intersects(enemy.get(g).collisionBox)&&enemy.get(g).isAlive==true) {
 					project.get(i).isAlive=false;
 					enemy.get(g).isAlive=false;
 					score++;

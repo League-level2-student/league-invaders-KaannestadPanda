@@ -2,7 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Alien extends GameObject{
-int sped=10;
+int sped=5;
 	Alien(int newX, int newY, int newWidth, int newHeight) {
 		super(newX, newY, newWidth, newHeight);
 		// TODO Auto-generated constructor stub
@@ -18,8 +18,7 @@ int sped=10;
 	
 	void draw(Graphics g) {
 		
-		g.setColor(Color.YELLOW);
-		g.fillRect(x, y, width, height);
+		g.drawImage(GamePanel.alienImg,x,y,width,height,null);
 		
 	}
 	

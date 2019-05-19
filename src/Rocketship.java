@@ -21,8 +21,7 @@ super.update();
 }
 
 void draw(Graphics eg) {
-	eg.setColor(Color.BLUE);
-	eg.fillRect(x, y, width, height);
+	eg.drawImage(GamePanel.rocketImg,x,y,width,height,null);
 }
 	
 	
